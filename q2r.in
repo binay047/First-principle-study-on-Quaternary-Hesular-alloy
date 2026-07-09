@@ -1,0 +1,6 @@
+&input
+  fildyn = 'aiida.dyn'
+  flfrc  = 'aiida.fc'
+  zasr   = 'crystal'
+/
+

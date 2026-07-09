@@ -1,0 +1,6 @@
+aiida.freq
+0 800
+aiida.phonon.bands.xmgr
+aiida.phonon.bands.ps
+0
+50 0

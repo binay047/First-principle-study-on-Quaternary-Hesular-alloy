@@ -1,0 +1,13 @@
+&inputph
+  prefix = 'aiida'
+  outdir = './out/'
+  fildyn = 'aiida.dyn'
+  ldisp  = .true.
+  nq1    = 3
+  nq2    = 3
+  nq3    = 3
+  alpha_mix = 0.7
+  tr2_ph = 1.0d-14
+  recover = .true.
+/
+
