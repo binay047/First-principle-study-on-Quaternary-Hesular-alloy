@@ -1,0 +1,8 @@
+&DOS
+  prefix = 'aiida'
+  outdir = './out/'
+  fildos = 'dos.dat'
+  emax = 23.0
+  emin = 3.0
+/
+

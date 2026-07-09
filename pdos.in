@@ -1,0 +1,9 @@
+&PROJWFC
+outdir = './out/'
+prefix = 'aiida'
+filpdos = "pdos.dat"
+emin = 3
+emax = 23
+deltaE = 0.01
+degauss = 0.02
+/
