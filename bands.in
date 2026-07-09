@@ -1,0 +1,7 @@
+&BANDS
+  prefix = 'aiida'
+  outdir = './out/'
+  filband = 'bands_plot.bands'
+/
+
+
