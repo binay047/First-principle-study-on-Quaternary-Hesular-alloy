@@ -7,7 +7,10 @@ dos.x <dos.in> dos.out
 awk 'NR>1 {print $1, $2}' dos.dat > raw_up.dat
 awk 'NR>1 {print $1, -$3}' dos.dat > raw_down.dat
 projwfc.x < pdos.in > pdos.out
-sumpdos.x *\(Al\)* > atom_Al_tot.dat
+sumpdos.x *\(Be\)* > atom_Be_tot.dat
+sumpdos.x *\(Mg\)* > atom_Mg_tot.dat
+sumpdos.x *\(Co\)* > atom_Co_tot.dat
+sumpdos.x *\(Si\)* > atom_Si_tot.dat
 
 
 # In band directory
