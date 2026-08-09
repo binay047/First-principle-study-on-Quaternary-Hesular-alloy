@@ -86,7 +86,12 @@
 
 # 7. Raman spectroscopy
 * pw.x <scf.in> scf. out
-* 
+* ph.x <ph_raman.in> ph_raman.out
+* **Note:** you need pz-hgh pesudopotentials
+* python3 -c "import numpy as np; peak=[(183.62,13.0937), (280.46,251.2447),(401.29,308.4624)]; w=np.linspace(100, 500, 800); fit=sum(I0*np.exp(-((w-w0)/2)**2) for w0, I0 in peak); np.savetxt('raman_curve.dat', np.column_stack((w, fit)), fmt='%.4f')"
+ * **Note:** from dynmat.out, look for double frequencies and replace them in the above (183.62,13.0937), (280.46,251.2447),(401.29,308.4624), 183.62, 280.46 and 401.29 are frequencies and 13.0937, 251.2447, 308.4624 are corresponding raman values
+  
+
 
   
 
