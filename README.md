@@ -318,3 +318,38 @@ python3 extract_e14.py BeScCoSi 67.62 ./piezo_inputs
 ### Summary
 
 `piezo.py` generates the strained structures and runs the scf → nscf(lberry) pipeline; `extract_e14.py` is the analysis half — it reads back the Berry-phase results, undoes the coordinate-system artefact from the non-Cartesian cell, fits the slope, and reports the final $d_{14}$.
+# 9. Formation Energy
+
+## Theory
+
+The formation energy quantifies the thermodynamic stability of the compound relative to its constituent elements in their reference (bulk, elemental) phases. It is defined as:
+
+$$
+E_f = E_{\text{compound}} - \sum_i n_i\, E_i^{\text{atom}}
+$$
+
+where $E_{\text{compound}}$ is the total DFT energy of the relaxed compound per formula unit, $E_i^{\text{atom}} = E_i / N_i$ is the per-atom reference energy of elemental species $i$ (computed separately, from that element's own bulk/ground-state structure, dividing its total energy by its number of atoms in that calculation), and $n_i$ is the number of atoms of species $i$ per formula unit of the compound. A negative $E_f$ indicates the compound is energetically favorable to form from its constituent elements (thermodynamically stable against decomposition into the elemental phases); a positive value indicates instability.
+
+Both $E_{\text{compound}}$ and each $E_i$ are read directly from Quantum ESPRESSO's `scf.out`-type files: the script locates the number of atoms per cell (`"number of atoms/cell"`) and the final converged total energy (the line beginning with `!`, QE's marker for the self-consistent total energy in Ry). The elemental per-atom energies are summed and subtracted from the compound energy to give $E_f$ per formula unit, which is then converted from Ry to eV (1 Ry = 13.605693 eV) and reported both per formula unit and per atom:
+
+$$
+E_f\,[\text{eV/f.u.}] = E_f\,[\text{Ry/f.u.}] \times 13.605693, \qquad
+E_f\,[\text{eV/atom}] = \frac{E_f\,[\text{eV/f.u.}]}{N_{\text{atoms in compound}}}
+$$
+
+**Caveat worth stating in the thesis methods text:** this definition uses the elements' DFT total energies directly as computed (whatever structure/settings were used for `Mg.out`, `Sc.out`, `Co.out`, `Si.out`), so the reference states must be each element's correct experimental/most-stable bulk allotrope (e.g. hcp-Mg, not an arbitrary or unrelaxed cell) — an inconsistent reference state changes $E_f$ without reflecting a real change in compound stability.
+
+## Procedure
+
+* Run separate `scf` calculations for the compound and for each elemental reference:
+  * `pw.x <scf.in> scf.out` (compound)
+  * `pw.x <Mg.in> Mg.out`, `pw.x <Sc.in> Sc.out`, `pw.x <Co.in> Co.out`, `pw.x <Si.in> Si.out` (elements, each in their own stable bulk structure)
+* Place all output files in the same working directory as the script.
+* `python3 formation_energy.py`
+* **Note:** for a different quaternary Heusler alloy, update in the script:
+  - `compound_file` — path to the new compound's `scf.out`
+  - `elements` dictionary — element labels and their corresponding elemental reference `.out` files, matching the new compound's constituent species
+  - Everything else (energy/`nat` parsing, the $E_f$ formula, and unit conversion) stays unchanged
+
+### Output
+Prints each element's per-atom reference energy, followed by the compound energy, summed elemental reference energy, and formation energy in Ry/f.u., eV/f.u., and eV/atom.
