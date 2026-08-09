@@ -272,7 +272,7 @@ computed **per strain point**, not with a fixed constant — straining the cell 
 1. **Parses each `_nscf.out`** — regex-extracts `P = ... (mod ...) C/m^2` and the printed direction vector $(d_x, d_y, d_z)$.
 2. **Applies the projection correction** above to recover $P_x$ for each strain point, using that file's own $d_x$.
 3. **Sanity-checks each point:**
-   - skips files with no polarization block (failed/crashed run)
+   - skips files with no polarisation block (failed/crashed run)
    - skips points where $d_x \approx 0$ (correction would diverge)
    - flags points where $(d_x,d_y,d_z)$ deviates noticeably from the expected $(-0.707, 0, 0.707)$-type pattern
 4. **Linear least-squares fit** (no numpy/scipy — closed-form slope/intercept) of
@@ -281,7 +281,7 @@ $$
 P_x = e_{14}\,\eta_4 + P_0
 $$
 
-   reporting $R^2$; warns if $R^2 < 0.99$, since a poor fit usually signals a **branch jump** — Berry-phase polarization is only defined modulo a quantum $eR/\Omega$, so if QE's chosen branch jumps between adjacent strain points, the data won't lie on a clean line.
+   reporting $R^2$; warns if $R^2 < 0.99$, since a poor fit usually signals a **branch jump** — Berry-phase polarisation is only defined modulo a quantum $eR/\Omega$, so if QE's chosen branch jumps between adjacent strain points, the data won't lie on a clean line.
 5. **Converts to $d_{14}$** using the user-supplied $C_{44}$ (GPa), with SI-to-pm/V unit conversion:
 
 $$
@@ -298,9 +298,10 @@ $$
   - `ECUTWFC`, `ECUTRHO` — re-converge for the new pseudopotentials
   - If the new compound is magnetic: add `nspin = 2` and `starting_magnetization(ityp)` to both scf and nscf blocks
   - `GDIR = 1`, `KPTS_BASE`, `NPPSTR`, `STRAIN_VALUES`, and the yz-shear strain function stay unchanged as long as the compound is $F\bar43m$ ($T_d$), since $d_{14}=d_{25}=d_{36}$ still holds
+* **Note:** after running python3 piezo.py, it will give folder piezo_inputs, copy pesudo inside it and perform below codes
 * pw.x <BeScCoSi_eta00_scf.in> BeScCoSi_eta00_scf.out
 * pw.x <BeScCoSi_eta00_nscf.in> BeScCoSi_eta00_nscf.out
-  * **Note:** run all scf.in and nscf.in
+  * **Note:** run all scf. in and nscf. in and get out of piezo_inputs directory and keep extract_e14.py in same place as piezo.py and take C44_GPa from thermo's scf. out, run the code below
 
 ### Usage
 
@@ -316,4 +317,4 @@ python3 extract_e14.py BeScCoSi 67.62 ./piezo_inputs
 
 ### Summary
 
-`piezo.py` generates the strained structures and runs the scf → nscf(lberry) pipeline; `extract_e14.py` is the analysis half — it reads back the Berry-phase results, undoes the coordinate-system artifact from the non-Cartesian cell, fits the slope, and reports the final $d_{14}$.
+`piezo.py` generates the strained structures and runs the scf → nscf(lberry) pipeline; `extract_e14.py` is the analysis half — it reads back the Berry-phase results, undoes the coordinate-system artefact from the non-Cartesian cell, fits the slope, and reports the final $d_{14}$.
