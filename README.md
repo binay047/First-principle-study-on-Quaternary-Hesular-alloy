@@ -19,7 +19,6 @@ mpirun -np 8 pw.x <band.in> band.out
 bands.x <bands.in> bands.out
 plot bands_plot.bands.gnu file using xmgrace
 
-
 #In phonon directory
 mpirun -np 8 pw.x <scf.in> scf.out
 mpirun -np 8 ph.x <ph.in > ph.out
