@@ -89,8 +89,18 @@
 * ph.x <ph_raman.in> ph_raman.out
 * **Note:** you need pz-hgh pesudopotentials
 * python3 -c "import numpy as np; peak=[(183.62,13.0937), (280.46,251.2447),(401.29,308.4624)]; w=np.linspace(100, 500, 800); fit=sum(I0*np.exp(-((w-w0)/2)**2) for w0, I0 in peak); np.savetxt('raman_curve.dat', np.column_stack((w, fit)), fmt='%.4f')"
- * **Note:** from dynmat.out, look for double frequencies and replace them in the above (183.62,13.0937), (280.46,251.2447),(401.29,308.4624), 183.62, 280.46 and 401.29 are frequencies and 13.0937, 251.2447, 308.4624 are corresponding raman values
-  
+ * **Note:** from dynmat.out, look for double frequencies and replace them in the above (183.62,13.0937), (280.46,251.2447),(401.29,308.4624), 183.62, 280.46 and 401.29 are frequencies and 13.0937, 251.2447, 308.4624 are corresponding Raman values
+
+# 8. Piezoelectricity 
+* python3 piezo.py
+* **Note:** for a different quaternary Heusler alloy, update in `piezo.py`:
+  - `COMPOUND_LABEL`, `ALAT_ANGSTROM` — new compound name and relaxed lattice constant
+  - `ATOMIC_SPECIES` — masses and pseudopotential filenames for the new elements
+  - `ATOMIC_POSITIONS` — fractional coordinates for the DFT-confirmed site ordering (Type I/II/III) of the new compound; do not reuse the old dict as-is
+  - `NBND` — recompute from the new total valence electron count
+  - `ECUTWFC`, `ECUTRHO` — re-converge for the new pseudopotentials
+  - If the new compound is magnetic: add `nspin = 2` and `starting_magnetization(ityp)` to both scf and nscf blocks
+  - `GDIR = 1`, `KPTS_BASE`, `NPPSTR`, `STRAIN_VALUES`, and the yz-shear strain function stay unchanged as long as the compound is $F\bar43m$ ($T_d$), since $d_{14}=d_{25}=d_{36}$ still holds
 
 
   
