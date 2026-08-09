@@ -101,6 +101,8 @@
   - `ECUTWFC`, `ECUTRHO` — re-converge for the new pseudopotentials
   - If the new compound is magnetic: add `nspin = 2` and `starting_magnetization(ityp)` to both scf and nscf blocks
   - `GDIR = 1`, `KPTS_BASE`, `NPPSTR`, `STRAIN_VALUES`, and the yz-shear strain function stay unchanged as long as the compound is $F\bar43m$ ($T_d$), since $d_{14}=d_{25}=d_{36}$ still holds
+ * pw.x <BeScCoSi_eta00_scf.in> BeScCoSi_eta00_scf.out
+ * pw.x <BeScCoSi_eta00_nscf.in> BeScCoSi_eta00_nscf.out   
 
 
   
