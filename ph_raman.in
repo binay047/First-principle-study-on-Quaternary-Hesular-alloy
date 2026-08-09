@@ -1,0 +1,11 @@
+&INPUTPH
+  tr2_ph = 1.0d-14,
+  prefix = 'aiida'
+  outdir = './out/',
+  fildyn = 'aiida.dyn',
+  epsil  = .true.,
+  lraman = .true.,
+  trans  = .true.,
+  asr    = .true.,
+/
+0.0 0.0 0.0
