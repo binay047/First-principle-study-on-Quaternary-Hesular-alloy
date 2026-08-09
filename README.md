@@ -40,14 +40,14 @@
 * sumpdos.x *\(Co\)* > atom_Co_tot.dat
 * sumpdos.x *\(Si\)* > atom_Si_tot.dat
 
-#4. In band directory
+# 4. In band directory
 * mpirun -np 8 pw.x <scf.in> scf. out
 * mpirun -np 8 pw.x <band.in> band.out
 * **Note:**  note: kpoints in band. in is generated using xcrysden 
 * bands.x <bands.in> bands.out
 * plot bands_plot.bands.gnu file using xmgrace
 
-#5. In phonon directory
+# 5. In phonon directory
 * mpirun -np 8 pw.x <scf.in> scf.out
 * mpirun -np 8 ph.x <ph.in > ph.out
 * mpirun -np 8 q2r.x <q2r.in > q2r.out
@@ -60,7 +60,7 @@
 * awk '{print $1,$5}'  phdos.dat> Co.dat
 * awk '{print $1,$6}'  phdos.dat> Si.dat
 
-#6. thermo directory
+# 6. thermo directory
 * **Note:** Please create an empty out folder in the working directory, and we need scf. in and thermo_control files, finally run
 * mpirun -np 8 thermo_pw.x <scf.in> scf. out
 ** Now, to extract specific heat capacity, free energy and entropy.dat, use the following awk commands inside the therm_files folder generated after running the above code
