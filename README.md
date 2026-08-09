@@ -9,7 +9,7 @@
 # 2. Convergence Tests
 * chmod +x ecut.sh
 *./ecut.sh
-** Take a converged ecut and place it in k.sh
+** Take a converged ecut and place it in k.sh**
  * chmod +x k.sh
  * ./k.sh
 ** Take a converged kpoint and place it in lattice.sh
