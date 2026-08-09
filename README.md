@@ -66,6 +66,8 @@
 * awk 'BEGIN{print "#T(K)   Cv(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$5*1312749.8}' output_therm.dat_debye.g1 > Cv.dat
 * awk 'BEGIN{print "#T(K)   Free_Energy(KJmol^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,($3*1312749.8)/1000}' output_therm.dat_debye.g1 > FreeEnergy.dat
 * awk 'BEGIN{print "#T(K)   Entropy(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$4*1312749.8}' output_therm.dat_debye.g1 > entropy.dat
+* **Note:** now update in kl.py C11, C12, C44 from scf. out in GPa by dividing each of them by 10, rho from vc_relax.out by searching near final bfgs, Mavg adding all elements mass from scf.out, Omega_cell from vc_relax.out, at last of kl.py update Tmax(temperature upto which you want to calculate Zt)
+* python3 kl.py
 
 # 6. Optical directory
 * **Note:** you need non-conserving pseudopotentials for optical properties calculation and add noinv = .true. in the system card in scf. in and nscf.in
