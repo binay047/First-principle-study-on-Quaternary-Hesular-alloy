@@ -1,4 +1,42 @@
 # Thermoelectric-on-BeScCoSi
+# First-Principles Study of BeScCoSi and MgScCoSi
+
+*This repository contains the input files, scripts, and calculation workflow used to investigate the structural, electronic, magnetic, dynamical, mechanical, piezoelectric, thermodynamic, optical, and thermoelectric properties of BeScCoSi and MgScCoSi using Density Functional Theory (DFT).*
+
+*The calculations were mainly performed using Quantum ESPRESSO, thermo_pw, and BoltzTraP2.*
+
+---
+
+# 1. Structural and Phase Stability
+
+*In BeScCoSi and MgScCoSi, three different atomic arrangements were considered.*
+
+*The total energies of the three phases were calculated and compared.*
+
+*The phase with the lowest total energy was selected as the most stable structure.*
+
+*Phase III, having the LiMgPdSn-type cubic structure with space group F-43m (No. 216), was found to be the most stable phase for both compounds.*
+
+*The optimized lattice parameters were:*
+
+- *BeScCoSi → 5.812 Å*
+- *MgScCoSi → 6.150 Å*
+
+*The optimized Phase III structure was used for all subsequent calculations.*
+
+---
+
+# 2. Convergence Tests
+
+*Before performing the main calculations, convergence tests were carried out for the important computational parameters.*
+
+## 2.1 Plane-Wave Cutoff Energy
+
+*The plane-wave cutoff energy (`ecutwfc`) was varied and the total energy was monitored.*
+
+```bash
+chmod +x ecut.sh
+./ecut.sh
 * In BeScCoSi, you have three phases
 
 #In Dos directory
