@@ -4,7 +4,7 @@
 # 1. Phase Stability
 *The total energies of the three phases were calculated and compared.*
 *The phase with the lowest total energy was selected as the most stable structure.*
-*Phase III, having the LiMgPdSn-type cubic structure with space group F-43m (No. 216), was found to be the most stable phase for both compounds.*
+*Phase III, having the LiMgPdSn-type cubic structure with space group F-43m (No. 216), was found to be the most stable phase.*
 
 # 2. Convergence Tests
 * chmod +x ecut.sh
