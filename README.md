@@ -1,5 +1,5 @@
 # First-Principles Study of BeScCoSi 
-*This repository contains the input files, scripts, and calculation workflow used to investigate the structural, electronic, magnetic, dynamical, mechanical, piezoelectric, thermodynamic, optical, and thermoelectric properties of BeScCoSi and MgScCoSi using Density Functional Theory (DFT).*
+*This repository contains the input files, scripts, and calculation workflow used to investigate the structural, electronic, magnetic, dynamical, mechanical, piezoelectric, thermodynamic, optical, and thermoelectric properties of BeScCoSi using Density Functional Theory (DFT).*
 *The calculations were mainly performed using Quantum ESPRESSO, thermo_pw, and BoltzTraP2.*
 # 1. Phase Stability
 *The total energies of the three phases were calculated and compared.*
