@@ -328,7 +328,7 @@ $$
 E_f = E_{\text{compound}} - \sum_i n_i\, E_i^{\text{atom}}
 $$
 
-where $E_{\text{compound}}$ is the total DFT energy of the relaxed compound per formula unit, $E_i^{\text{atom}} = E_i / N_i$ is the per-atom reference energy of elemental species $i$ (computed separately, from that element's own bulk/ground-state structure, dividing its total energy by its number of atoms in that calculation), and $n_i$ is the number of atoms of species $i$ per formula unit of the compound. A negative $E_f$ indicates the compound is energetically favorable to form from its constituent elements (thermodynamically stable against decomposition into the elemental phases); a positive value indicates instability.
+where $E_{\text{compound}}$ is the total DFT energy of the relaxed compound per formula unit, $E_i^{\text{atom}} = E_i / N_i$ is the per-atom reference energy of elemental species $i$ (computed separately, from that element's own bulk/ground-state structure, dividing its total energy by its number of atoms in that calculation), and $n_i$ is the number of atoms of species $i$ per formula unit of the compound. A negative $E_f$ indicates the compound is energetically favourable to form from its constituent elements (thermodynamically stable against decomposition into the elemental phases); a positive value indicates instability.
 
 Both $E_{\text{compound}}$ and each $E_i$ are read directly from Quantum ESPRESSO's `scf.out`-type files: the script locates the number of atoms per cell (`"number of atoms/cell"`) and the final converged total energy (the line beginning with `!`, QE's marker for the self-consistent total energy in Ry). The elemental per-atom energies are summed and subtracted from the compound energy to give $E_f$ per formula unit, which is then converted from Ry to eV (1 Ry = 13.605693 eV) and reported both per formula unit and per atom:
 
@@ -343,7 +343,7 @@ $$
 
 * Run separate `scf` calculations for the compound and for each elemental reference:
   * `pw.x <scf.in> scf.out` (compound)
-  * `pw.x <Mg.in> Mg.out`, `pw.x <Sc.in> Sc.out`, `pw.x <Co.in> Co.out`, `pw.x <Si.in> Si.out` (elements, each in their own stable bulk structure)
+  * `pw.x <Be.in> Be.out`, `pw.x <Sc.in> Sc.out`, `pw.x <Co.in> Co.out`, `pw.x <Si.in> Si.out` (elements, each in their own stable bulk structure)
 * Place all output files in the same working directory as the script.
 * `python3 formation_energy.py`
 * **Note:** for a different quaternary Heusler alloy, update in the script:
