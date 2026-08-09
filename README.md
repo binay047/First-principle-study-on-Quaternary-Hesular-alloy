@@ -9,24 +9,24 @@
 # 2. Convergence Tests
 * chmod +x ecut.sh
 *./ecut.sh
-* **Note:** ** Take a converged ecut and place it in k.sh**
+* **Note:**  Take a converged ecut and place it in k.sh
  * chmod +x k.sh
  * ./k.sh
-** Take a converged kpoint and place it in lattice.sh
+* **Note:**  Take a converged kpoint and place it in lattice.sh
   * chmod +x lattice.sh
   * ./lattice.sh
-** Now, you will get etot_vs_k.dat
-** Open terminal in the same lattice directory
+* **Note:**  Now, you will get etot_vs_k.dat
+  * **Note:** Open terminal in the same lattice directory
 * ev.x 
 * ang
 * noncubic
 * 4
 * input file name: lattice.dat
 * output file name: bin
-** Take this a0 from bin into vc_relax.in
+* **Note:**  Take this a0 from bin into vc_relax.in
 # 3. relaxation
 *pw.x <vc_relx.in> vc_relax.out
-** convert cell_parameters into format of a and update "a" and "atomic_position" in new scf.in
+* **Note:** convert cell_parameters into format of a and update "a" and "atomic_position" in new scf.in
 
 # 3. In Dos directory
 * mpirun -np 8 pw.x <scf.in> scf.out
@@ -43,7 +43,7 @@
 #4. In band directory
 * mpirun -np 8 pw.x <scf.in> scf. out
 * mpirun -np 8 pw.x <band.in> band.out
-** note: kpoints in band. in is generated using xcrysden 
+* **Note:**  note: kpoints in band. in is generated using xcrysden 
 * bands.x <bands.in> bands.out
 * plot bands_plot.bands.gnu file using xmgrace
 
@@ -61,7 +61,7 @@
 * awk '{print $1,$6}'  phdos.dat> Si.dat
 
 #6. thermo directory
-** Please create an empty out folder in the working directory, and we need scf. in and thermo_control files, finally run
+* **Note:** Please create an empty out folder in the working directory, and we need scf. in and thermo_control files, finally run
 * mpirun -np 8 thermo_pw.x <scf.in> scf. out
 ** Now, to extract specific heat capacity, free energy and entropy.dat, use the following awk commands inside the therm_files folder generated after running the above code
 * awk 'BEGIN{print "#T(K)   Cv(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$5*1312749.8}' output_therm.dat_debye.g1 > Cv.dat
