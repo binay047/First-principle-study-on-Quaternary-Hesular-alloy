@@ -1,4 +1,5 @@
 # Thermoelectric-on-BeScCoSi
+* In BeScCoSi, you have three phases
 
 #In Dos directory
 mpirun -np 8 pw.x <scf.in> scf.out
