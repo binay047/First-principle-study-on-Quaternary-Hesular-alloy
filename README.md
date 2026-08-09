@@ -26,7 +26,7 @@
 * **Note:**  Take this a0 from bin into vc_relax.in
 # 3. relaxation
 *pw.x <vc_relx.in> vc_relax.out
-* **Note:** convert cell_parameters into format of a and update "a" and "atomic_position" in new scf.in
+* **Note:** convert cell_parameters into the format of a and update "a" and "atomic_position" in new scf.in
 
 # 3. In Dos directory
 * mpirun -np 8 pw.x <scf.in> scf.out
@@ -60,13 +60,19 @@
 * awk '{print $1,$5}'  phdos.dat> Co.dat
 * awk '{print $1,$6}'  phdos.dat> Si.dat
 
-# 6. thermo directory
+# 6. Thermo directory
 * **Note:** Please create an empty out folder in the working directory, and we need scf. in and thermo_control files, finally run
 * mpirun -np 8 thermo_pw.x <scf.in> scf. out
 ** Now, to extract specific heat capacity, free energy and entropy.dat, use the following awk commands inside the therm_files folder generated after running the above code
 * awk 'BEGIN{print "#T(K)   Cv(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$5*1312749.8}' output_therm.dat_debye.g1 > Cv.dat
 * awk 'BEGIN{print "#T(K)   Free_Energy(KJmol^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,($3*1312749.8)/1000}' output_therm.dat_debye.g1 > FreeEnergy.dat
 * awk 'BEGIN{print "#T(K)   Entropy(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$4*1312749.8}' output_therm.dat_debye.g1 > entropy.dat
+
+# 7. Optical directory
+* **Note:** you need non-conserving pseudopotentials for optical properties calculation and add noinv = .true. in the system card in scf. in and nscf.in
+* pw.x <scf.in> scf.out
+* pw.x <nscf.in> nscf.out
+* epsilon.x <epsilon.in> epsilon.out
 
 
 
