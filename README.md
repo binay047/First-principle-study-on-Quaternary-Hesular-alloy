@@ -98,7 +98,7 @@ At the prompts, enter:
 
 ```bash
 ang
-noncubic
+fcc
 4
 input file name: lattice.dat
 output file name: bin
