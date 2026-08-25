@@ -450,9 +450,9 @@ $$
 
 ### Procedure
 
-\`\`\`bash
+```bash
 python3 piezo.py
-\`\`\`
+```
 
 > **Note:** For a different quaternary Heusler alloy, update in `piezo.py`:
 > - `COMPOUND_LABEL`, `ALAT_ANGSTROM` — new compound name and relaxed lattice constant
@@ -465,24 +465,25 @@ python3 piezo.py
 
 > **Note:** After running `python3 piezo.py`, it will produce a `piezo_inputs` folder — copy the pseudopotentials into it, then run:
 
-\`\`\`bash
+```bash
 pw.x < BeScCoSi_eta00_scf.in > BeScCoSi_eta00_scf.out
+```
+```bash
 pw.x < BeScCoSi_eta00_nscf.in > BeScCoSi_eta00_nscf.out
-\`\`\`
+```
 
-> **Note:** Run all `scf.in`/`nscf.in` pairs, then move out of `piezo_inputs`, keep `extract_e14.py` alongside `piezo.py`, and take `C44_GPa` from `thermo`'s `scf.out`.
+> **Note:** Run all `scf.in`/`nscf.in` pairs, then move out of `piezo_inputs`, keep `extract_e14.py` alongside `piezo.py`, and take `C44_GPa` from `thermo`'s `scf.out` in below code
 
 **Usage:**
 
-\`\`\`bash
-python3 extract_e14.py <compound_label> <C44_GPa> [piezo_inputs_dir]
-\`\`\`
+
+> python3 extract_e14.py <compound_label> <C44_GPa> [piezo_inputs_dir]
 
 **Example:**
 
-\`\`\`bash
+```bash
 python3 extract_e14.py BeScCoSi 67.62 ./piezo_inputs
-\`\`\`
+```
 
 **Summary:** `piezo.py` generates the strained structures and runs the `scf → nscf(lberry)` pipeline; `extract_e14.py` is the analysis half — it reads back the Berry-phase results, undoes the coordinate-system artefact from the non-Cartesian cell, fits the slope, and reports the final $d_{14}$.
 
