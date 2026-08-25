@@ -354,23 +354,25 @@ awk 'NR==FNR { if(FNR>2) { r_avg=($2+$3+$4)/3; r[FNR]=r_avg } next } { if(FNR<=2
 Raman-active zone-center ($\Gamma$-point, $\mathbf{q}=0$) phonon modes are computed via DFPT in `ph.x`, and their Raman tensor / activity is extracted by `dynmat.x`. Because $F\bar43m$ ($T_d$) is a non-centrosymmetric group, its zone-center optical phonons can be simultaneously Raman- and IR-active. Each identified Raman-active mode has a characteristic frequency $\omega_0$ and Raman intensity $I_0$; the simulated spectrum is constructed as a sum of Gaussian peaks,
 
 $$
-I(\omega) = \sum_i I_{0,i} \, \exp\!\left[-\left(\frac{\omega-\omega_{0,i}}{2}\right)^2\right]
+I(\omega) = \sum_i I_{0,i} \exp\left[-\left(\frac{\omega-\omega_{0,i}}{2}\right)^2\right]
 $$
 
 which approximates the finite linewidth seen in experimental Raman spectra (arising from anharmonic phonon lifetimes not captured at the harmonic DFPT level) and allows direct visual/qualitative comparison to experimental Raman data.
 
 ### Procedure
 
-\`\`\`bash
+```bash
 pw.x < scf.in > scf.out
+```
+```bash
 ph.x < ph_raman.in > ph_raman.out
-\`\`\`
+```
 
 > **Note:** You need `pz-hgh` pseudopotentials.
 
-\`\`\`bash
+```bash
 python3 -c "import numpy as np; peak=[(183.62,13.0937), (280.46,251.2447),(401.29,308.4624)]; w=np.linspace(100, 500, 800); fit=sum(I0*np.exp(-((w-w0)/2)**2) for w0, I0 in peak); np.savetxt('raman_curve.dat', np.column_stack((w, fit)), fmt='%.4f')"
-\`\`\`
+```
 
 > **Note:** From `dynmat.out`, look for the double frequencies and replace `(183.62,13.0937), (280.46,251.2447), (401.29,308.4624)` above — 183.62, 280.46, and 401.29 are the frequencies, and 13.0937, 251.2447, 308.4624 are the corresponding Raman values.
 
