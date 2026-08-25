@@ -132,27 +132,33 @@ which identifies which atomic species and orbitals dominate the states near the 
 
 ### Procedure
 
-\`\`\`bash
+```bash
 mpirun -np 8 pw.x < scf.in > scf.out
+```
+```bash
 mpirun -np 8 pw.x < nscf.in > nscf.out
+```
+```bash
 dos.x < dos.in > dos.out
-\`\`\`
+```
 
-\`\`\`bash
+```bash
 awk 'NR>1 {print $1, $2}' dos.dat > raw_up.dat
+```
+```bash
 awk 'NR>1 {print $1, -$3}' dos.dat > raw_down.dat
-\`\`\`
+```
 
-\`\`\`bash
+```bash
 projwfc.x < pdos.in > pdos.out
-\`\`\`
+```
 
-\`\`\`bash
+```bash
 sumpdos.x *\(Be\)* > atom_Be_tot.dat
 sumpdos.x *\(Mg\)* > atom_Mg_tot.dat
 sumpdos.x *\(Co\)* > atom_Co_tot.dat
 sumpdos.x *\(Si\)* > atom_Si_tot.dat
-\`\`\`
+```
 
 ---
 
