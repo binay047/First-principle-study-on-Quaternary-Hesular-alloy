@@ -155,8 +155,14 @@ projwfc.x < pdos.in > pdos.out
 
 ```bash
 sumpdos.x *\(Be\)* > atom_Be_tot.dat
+```
+```bash
 sumpdos.x *\(Mg\)* > atom_Mg_tot.dat
+```
+```bash
 sumpdos.x *\(Co\)* > atom_Co_tot.dat
+```
+```bash
 sumpdos.x *\(Si\)* > atom_Si_tot.dat
 ```
 
