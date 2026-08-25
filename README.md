@@ -310,29 +310,40 @@ absorption coefficient $\alpha(\omega) = \dfrac{2\omega k}{c}$, optical conducti
 
 > **Note:** You need norm-conserving pseudopotentials for the optical properties calculation, and must add `noinv = .true.` to the `SYSTEM` card in both `scf.in` and `nscf.in`.
 
-\`\`\`bash
+```bash
 pw.x < scf.in > scf.out
+```
+```bash
 pw.x < nscf.in > nscf.out
+```
+```bash
 epsilon.x < epsilon.in > epsilon.out
-\`\`\`
+```
 
-\`\`\`bash
+```bash
 awk '{if(FNR<=2){ if(FNR==1) print "# Energy [eV]  Isotropic_Real_Dielectric_Function"; next}eps1=($2+$3+$4)/3;printf " %11.9f%11.9f\n",$1,eps1}' epsr_aiida.dat > dielectric_real_isotropic.dat
-
+```
+```bash
 awk '{if(FNR<=2){ if(FNR==1) print "# Energy [eV]  Isotropic_Imaginary_Dielectric_Function"; next} eps2=($2+$3+$4)/3; printf " %11.9f%11.9f\n",$1,eps2}' epsi_aiida.dat > dielectric_imaginary_isotropic.dat
-
+```
+```bash
 awk 'NR==FNR { if(FNR>2) r[FNR]=($2+$3+$4)/3; next } { if(FNR<=2) { if(FNR==1) print "# Energy [eV]  Isotropic_Reflectivity [fraction]"; next } i_avg=($2+$3+$4)/3; mod=sqrt(r[FNR]^2 + i_avg^2);  n=sqrt((mod+r[FNR])/2); k=sqrt((mod-r[FNR])/2); R=((n-1)^2 + k^2)/((n+1)^2 + k^2); printf "    %11.9f    %11.9f\n", $1, R }' epsr_aiida.dat epsi_aiida.dat > reflectivity_isotropic.dat
-
+```
+```bash
 awk 'NR==FNR { if(FNR>2) r[FNR]=($2+$3+$4)/3; next } { if(FNR<=2) { if(FNR==1) print "# Energy [eV]  Isotropic_Refractive_Index_n"; next } i_avg=($2+$3+$4)/3; mod=sqrt(r[FNR]^2 + i_avg^2); n=sqrt((mod+r[FNR])/2); printf "    %11.9f    %11.9f\n", $1, n }' epsr_aiida.dat epsi_aiida.dat > refractive_index_isotropic.dat
-
+```
+```bash
 awk 'NR==FNR { if(FNR>2) r[FNR]=($2+$3+$4)/3; next } { if(FNR<=2) { if(FNR==1) print "# Energy [eV]  Isotropic_Extinction_Coefficient_k"; next } i_avg=($2+$3+$4)/3; mod=sqrt(r[FNR]^2 + i_avg^2); k=sqrt((mod-r[FNR])/2); printf "    %11.9f    %11.9f\n", $1, k }' epsr_aiida.dat epsi_aiida.dat > extinction_coefficient_isotropic.dat
-
+```
+```bash
 awk 'NR==FNR { if(FNR>2) r[FNR]=($2+$3+$4)/3; next } { if(FNR<=2) { if(FNR==1) print "# Energy [eV]  Isotropic_Absorption_Coefficient [10^4/cm]"; next } i_avg=($2+$3+$4)/3; mod=sqrt(r[FNR]^2 + i_avg^2); k=sqrt((mod-r[FNR])/2); alpha=(2*$1*k*1.6231012e5)/10000; printf "    %11.9f    %14.6f\n", $1, alpha }' epsr_aiida.dat epsi_aiida.dat > absorption_isotropic_scaled.dat
-
+```
+```bash
 awk '{ if(FNR<=2) { if(FNR==1) print "# Energy [eV]  Isotropic_Optical_Conductivity [10^3 Omega^-1 cm^-1]"; next } i_avg=($2+$3+$4)/3; sigma=(1327.21*$1*i_avg)/1000; printf "    %11.9f    %14.6f\n", $1, sigma }' epsi_aiida.dat > optical_conductivity_isotropic_scaled.dat
-
+```
+```bash
 awk 'NR==FNR { if(FNR>2) { r_avg=($2+$3+$4)/3; r[FNR]=r_avg } next } { if(FNR<=2) { if(FNR==1) print "# Energy [eV]  Isotropic_EELS"; next } i_avg=($2+$3+$4)/3; loss = i_avg / (r[FNR]^2 + i_avg^2); printf "    %11.9f    %11.9f\n", $1, loss }' epsr_aiida.dat epsi_aiida.dat > energylossfunction_isotropic.dat
-\`\`\`
+```
 
 ---
 
