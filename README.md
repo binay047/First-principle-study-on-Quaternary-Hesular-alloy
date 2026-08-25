@@ -514,19 +514,27 @@ $$
 
 Run separate `scf` calculations for the compound and for each elemental reference:
 
-\`\`\`bash
-pw.x < scf.in > scf.out      # compound
+```bash
+pw.x < scf.in > scf.out
+```
+```bash
 pw.x < Be.in > Be.out
+```
+```bash
 pw.x < Sc.in > Sc.out
+```
+```bash
 pw.x < Co.in > Co.out
+```
+```bash
 pw.x < Si.in > Si.out
-\`\`\`
+```
 
 Place all output files in the same working directory as the script, then run:
 
-\`\`\`bash
+```bash
 python3 formation_energy.py
-\`\`\`
+```
 
 > **Note:** For a different quaternary Heusler alloy, update in the script:
 > - `compound_file` — path to the new compound's `scf.out`
