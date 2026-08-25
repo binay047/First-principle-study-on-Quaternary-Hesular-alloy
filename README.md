@@ -1,7 +1,4 @@
 # First-Principles Study of BeScCoSi
-
-This repository contains the input files, scripts, and calculation workflow used to investigate the structural, electronic, magnetic, dynamical, mechanical, piezoelectric, thermodynamic, optical, and thermoelectric properties of BeScCoSi using Quantum espresso.
-
 The calculations were mainly performed using Quantum ESPRESSO, thermo_pw, and BoltzTraP2.
 
 ---
