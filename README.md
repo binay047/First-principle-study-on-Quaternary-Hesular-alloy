@@ -251,7 +251,7 @@ awk '{print $1,$6}' phdos.dat > Be.dat
 Within the quasi-harmonic Debye model implemented in `thermo_pw`, the vibrational free energy, entropy, and heat capacity are obtained by integrating the phonon (or Debye-approximated) density of states over the Bose-Einstein occupation factor at temperature $T$:
 
 $$
-F_{\text{vib}}(T) = k_B T \int g(\omega)\, \ln\!\left[2\sinh\!\left(\frac{\hbar\omega}{2k_BT}\right)\right] d\omega
+F_{\text{vib}}(T) = k_B T \int g(\omega)\, \ln\left[2\sinh\left(\frac{\hbar\omega}{2k_BT}\right)\right] d\omega
 $$
 
 with $C_v = -T\,\partial^2 F/\partial T^2$ and $S = -\partial F/\partial T$ following directly. These, combined with the elastic constants $C_{11}, C_{12}, C_{44}$, density $\rho$, average atomic mass $M_{\text{avg}}$, and unit-cell volume $\Omega_{\text{cell}}$, feed into the Slack/Debye-based lattice thermal conductivity model used by `kl.py` to estimate the thermoelectric figure of merit $ZT$ up to a chosen maximum temperature.
