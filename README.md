@@ -96,12 +96,11 @@ ev.x
 
 At the prompts, enter:
 
-> ang
-> fcc
-> 4
-> input file name: lattice.dat
-> output file name: bin
-
+> ang  
+> fcc  
+> 4  
+> input file name: lattice.dat  
+> output file name: bin  
 
 > **Note:** Take the resulting $a_0$ from `bin` into `vc_relax.in`.
 
