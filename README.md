@@ -40,7 +40,15 @@ differs measurably between them because each ordering places different nearest-n
 - Phase III, having the LiMgPdSn-type cubic structure with space group F-43m (No. 216), was found to be the most stable phase.
 
 ---
-
+```bash
+pw.x < scf_tphase1.in > scf_phase1.out
+```
+```bash
+pw.x < scf_phase2.in  > scf_phase2.out
+```
+```bash
+pw.x < scf_phase3.in > scf_phase3.out
+```
 ## 2. Convergence Tests
 
 ### Theory
