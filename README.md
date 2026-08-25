@@ -63,46 +63,52 @@ and convergence is confirmed when $E_{\text{tot}}(E_{\text{cut}})$ changes by le
 
 ### Procedure
 
-\`\`\`bash
+```bash
 chmod +x ecut.sh
+```
+```bash
 ./ecut.sh
-\`\`\`
+```
 
 > **Note:** Take a converged `ecut` and place it in `k.sh`.
 
-\`\`\`bash
+```bash
 chmod +x k.sh
+```
+```bash
 ./k.sh
-\`\`\`
+```
 
 > **Note:** Take a converged `kpoint` and place it in `lattice.sh`.
 
-\`\`\`bash
+```bash
 chmod +x lattice.sh
+```
+```bash
 ./lattice.sh
-\`\`\`
+```
 
 > **Note:** You will now have `etot_vs_k.dat`. Open a terminal in the same `lattice` directory and run:
 
-\`\`\`bash
+```bash
 ev.x
-\`\`\`
+```
 
 At the prompts, enter:
 
-\`\`\`
+```bash
 ang
 noncubic
 4
 input file name: lattice.dat
 output file name: bin
-\`\`\`
+```
 
 > **Note:** Take the resulting $a_0$ from `bin` into `vc_relax.in`.
 
-\`\`\`bash
+```bash
 pw.x < vc_relax.in > vc_relax.out
-\`\`\`
+```
 
 > **Note:** Convert `CELL_PARAMETERS` into the format of `a`, and update `a` and `ATOMIC_POSITIONS` in the new `scf.in`.
 
