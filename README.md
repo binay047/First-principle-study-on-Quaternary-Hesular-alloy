@@ -259,27 +259,27 @@ with $C_v = -T\,\partial^2 F/\partial T^2$ and $S = -\partial F/\partial T$ foll
 ### Procedure
 
 > **Note:** Create an empty `out` folder in the working directory. You'll need `scf.in` and `thermo_control` files, then run:
-
-\`\`\`bash
+```bash
 mpirun -np 8 thermo_pw.x < scf.in > scf.out
-\`\`\`
+```
 
 > **Note:** To extract specific heat capacity, free energy, and entropy, use the following `awk` commands inside the `therm_files` folder generated after running the above:
 
-\`\`\`bash
+```bash
 awk 'BEGIN{print "#T(K)   Cv(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$5*1312749.8}' output_therm.dat_debye.g1 > Cv.dat
-
+```
+```bash
 awk 'BEGIN{print "#T(K)   Free_Energy(KJmol^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,($3*1312749.8)/1000}' output_therm.dat_debye.g1 > FreeEnergy.dat
-
+```
+```bash
 awk 'BEGIN{print "#T(K)   Entropy(Jmol^-1K^-1)"}!/^#/{printf "%12.4f  %15.6f\n",$1,$4*1312749.8}' output_therm.dat_debye.g1 > entropy.dat
-\`\`\`
+```
 
 > **Note:** Update `kl.py` with C11, C12, C44 from `scf.out` in GPa (dividing each by 10), $\rho$ from `vc_relax.out` (search near "final bfgs"), $M_{\text{avg}}$ (sum of all element masses from `scf.out`), $\Omega_{\text{cell}}$ from `vc_relax.out`, and finally set `Tmax` (the temperature up to which you want to calculate $ZT$).
 
-\`\`\`bash
+```bash
 python3 kl.py
-\`\`\`
-
+```
 ---
 
 ## 7. Optical Properties
