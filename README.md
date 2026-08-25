@@ -176,16 +176,18 @@ The electronic band structure $\varepsilon_n(\mathbf{k})$ is computed along a pa
 
 ### Procedure
 
-\`\`\`bash
+```bash
 mpirun -np 8 pw.x < scf.in > scf.out
+```
+```bash
 mpirun -np 8 pw.x < band.in > band.out
-\`\`\`
+```
 
 > **Note:** k-points in `band.in` are generated using XCrySDen.
 
-\`\`\`bash
+```bash
 bands.x < bands.in > bands.out
-\`\`\`
+```
 
 Plot the `bands_plot.bands.gnu` file using xmgrace.
 
