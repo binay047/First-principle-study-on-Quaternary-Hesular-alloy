@@ -207,25 +207,40 @@ gives the phonon frequencies $\omega_s(\mathbf{q})$ and eigenvectors $\mathbf{e}
 
 ### Procedure
 
-\`\`\`bash
+```bash
 mpirun -np 8 pw.x < scf.in > scf.out
+```
+```bash
 mpirun -np 8 ph.x < ph.in > ph.out
+```
+```bash
 mpirun -np 8 q2r.x < q2r.in > q2r.out
+```
+```bash
 mpirun -np 8 matdyn.x < matdyn.in > matdyn.out
+```
+```bash
 plotband.x < plotband.in > plotband.out
-\`\`\`
+```
 
-\`\`\`bash
+```bash
 matdyn.x < phdos.in > phdos.out
-\`\`\`
-
-\`\`\`bash
+```
+```bash
 awk '{print $1,$2}' phdos.dat > total.dat
+```
+```bash
 awk '{print $1,$3}' phdos.dat > Sc.dat
+```
+```bash
 awk '{print $1,$4}' phdos.dat > Co.dat
+```
+```bash
 awk '{print $1,$5}' phdos.dat > Si.dat
+```
+```bash
 awk '{print $1,$6}' phdos.dat > Be.dat
-\`\`\`
+```
 
 ---
 
